@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Admin home page</title>
+</head>
+<body>
+    
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col-xl-12"> 
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+      
+                      <div class="col">
+                        <h3 class="mb-0">Chef Details</h3>
+                      </div>
+    <div class="table-responsive">
+    <br>
+   
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+    <tr>
+        <th scope="col">Chef's Name</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+    </tr>
+     </thead>
+     <tbody>
+    <tr>
+    <%  chef.forEach(chef => {%>
+         
+              
+                <tr>
+                    <td> <%= chef.username %></td>
+                    <td><%= chef.mobile %></td>
+                    <td name="email"><%= chef.email %></td>
+                </tr>
+           
+    <%})%>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<a href="/admin_homepage">Go Back to Home</a>
+</div>
+
+    <script src="javascripts/timer.js"></script>
+</body>
+</html>

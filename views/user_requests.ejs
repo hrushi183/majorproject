@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/img.css">
+    <title>User Request Page</title>
+</head>
+<body>
+
+   
+    
+
+<div style="margin-left: 25px;">
+
+    <div class="container">
+    <% if(request) {%>
+       
+        <!-- <ul>
+            <li>Name: <%= request.username %></li>
+            <li>Mobile: <%= request.mobile %></li>
+            <li>Email: <%= request.email %></li>
+            <% if(request.check == false ) {%>
+                <li>Status: not Accepted</li>
+            <% }  else { %>
+                <li>Status: Accepted</li>
+                <li><a href="/servicedone">Service done</a></li>
+
+            <% } %>
+        </ul> -->
+   
+        <h3 style="display:block;margin-top: 0.67em;margin-bottom: 0.67em; margin-left: 0px;margin-right: 0;color:grey;
+        font-weight:bold;">
+        Recently requested Chef
+        </h3>
+        <table>
+            
+            <tr> <td><p><strong>Name : </strong> <%= request.username %></p></td></tr>
+            <tr><td><p><strong>Mobile : </strong>  <%= request.mobile %></p></td></tr>
+            <tr><td><p><strong>Email : </strong><%= request.email %></p></td></tr>
+            <% if(request.check == false ) {%>
+                <tr><td><p><strong>Status : </strong><i> Not Accepted </i></p></td></tr>
+            <% }  else { %>
+                
+                <tr><td><strong>Status : </strong> Accepted</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td><a href="/servicedone">Service done</a></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+
+            <% } %>
+        
+        </table>
+   
+
+        <% } %>
+
+
+        <% if(request == '') {%>
+        <h3  style="display:block;margin-top: 0.67em;margin-bottom: 0.67em; margin-left: 0px;margin-right: 0;color:grey;
+            font-weight:bold;">
+            You don't have any recent request
+        </h3>
+        <% } %>
+        
+        <a href="/user_home">Go Back to Home</a>
+    </div>
+ </div>
+</body>
+</html>

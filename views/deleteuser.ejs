@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/img.css">
+    <title>user resource page</title>
+</head>
+
+<body>
+
+    <div style="margin-left: 25px;">
+        <button class="btn btn-outline-primary waves-effect float-right mt-3 mr-3 ">  <a href="/user_home">Home</a></button>
+
+        <br>
+        
+        <br>
+        <div class="container-fluid">
+            <h3>Enter your Mail to delete your account</h3>
+            <br>
+            <form action="/deleteuser" method="POST">
+             
+                <input class="w3-border w3-round" type="text" name="email" placeholder="example@gmail.com" required>
+                <button class="w3-button w3-round btn btn-danger">Delete</button><br>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="javascripts/timer.js"></script>
+</body>
+
+</html>

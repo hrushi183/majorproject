@@ -1,0 +1,390 @@
+
+//chef_request.js
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Chef Request Page</title>
+</head>
+<body>
+<div style="margin-left: 25px;">
+    <h2>
+        Chef's recent request from user
+    </h2>
+    <br />
+    <% if(request) {%>
+        <hr>
+        <ul>
+            <li>Name: <%= request.username %></li>
+            <li>Mobile: <%= request.mobile %></li>
+            <li>Email: <%= request.email %></li>
+            <% if(request.check == false ) {%>
+                <li>Status: not Accepted</li>
+                <li><button onclick="addDataToTables()"><a href="/accept">Accept</a></button></li>
+            <% }  else { %>
+                <li>Status: Accepted</li>
+            <% } %>
+        </ul>
+        <hr>
+        <% } %>
+
+
+        <% if(request == '') {%>
+            <h2>You don't have any recent request</h2>
+        <% } %>
+        <a href="/chef_homepage">homepage</a>
+</div>
+<script>
+    
+</script>
+
+</body>
+</html>
+
+
+
+//order.ejs
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>admin resource page</title>
+</head>
+<body>
+
+    <!-- <h1 class="text-center text-primary">Admin resource page</h1> -->
+
+  <button class="btn btn-outline-primary waves-effect float-right mt-3 mr-3 ">  <a href="/admin_homepage">Home</a></button>
+
+     <% if(order) { %>
+        <h3 class="text-center text-primary">Recent orders </h3>
+
+    <%  order.forEach(order => {%>
+          <br>  
+           <div class="container">
+           <div class="col-xl-6 float-left"> 
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-0">User Details</h2>
+                      </div>
+           <div class="table-responsive">
+           <table class="table align-items-center table-flush" id="userId">
+
+               <!-- <caption>User Details</caption>        -->
+
+            
+                        <!-- <ul>
+                            <li>User username: <h3><%= order.user.username %></h3></li>
+                            <li>Email: <h3><%= order.user[0].email %></h3></li>
+                            <li>Mobile: <h3><%= order.user[0].mobile %></h3></li>
+                        </ul> -->
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><%= order.user[0].username %></td>
+                            <td><%= order.user[0].email %></td>
+                            <td><%= order.user[0].mobile %></td>
+                        </tr>
+                        </tbody>
+            </table>
+            </div></div></div></div>
+            </div>
+            <div class="col-xl-6 float-right" > 
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="mb-0">Chef Details</h2>
+                          </div>
+            <div class="table-responsive">
+            <table class="table align-items-center table-flush">    
+               
+                    <!-- <ul>
+                        <li>Chef username: <h3><%= order.chef[0].username %></h3></li>
+                        <li>Email: <h3><%= order.chef[0].email %></h3></li>
+                        <li>Mobile: <h3><%= order.chef[0].mobile %></h3></li>
+                    </ul>  -->
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><%= order.chef[0].username %></td>
+                        <td><%= order.chef[0].email %></td>
+                        <td><%= order.chef[0].mobile %></td>
+                    </tr>
+                    </tbody>
+            </table>
+            </div></div></div></div>
+            </div>
+            </div>
+    <%})%>
+
+    <% } %>
+
+    <script src="javascripts/timer.js"></script>
+</body>
+</html>
+
+
+signin.ejs
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Login Page
+        </title>
+        <meta charset="utf-8">                
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        
+
+    </head>
+    <body>
+      <!-- check form vaidation -->
+      <div class="container">
+        <% if (error && error.length > 0) {%>
+         <br>
+         <div class="alert alert-danger text-center" role="alert">
+            <%= error %>
+        </div>
+     <% } %>
+    <% if (success && success.length > 0) {%>
+        <br>
+    <div class="alert alert-success text-center" role="alert">
+     <%= success %>
+    </div>
+    <% } %>
+      </div>
+      <br>
+      <br>
+      <br>
+        <div class="w3-container w3-white w3-panel w3-border w3-round-large size">
+        <form action="/login_user" class="formset" method="POST">
+            <h2 id="log"><u>User Login</u></h2>
+            <h4>Username:</h4>
+            <input  class="w3-border w3-round" type="text" name="email" placeholder="example@gmail.com" required>
+            <h4 >Password:</h4>
+            <input  class="w3-border w3-round" type="password" name="password" placeholder="password" required>
+            <button class="w3-button w3-round w3-blue btn">Sign In</button><br>
+            <div class="anchor"><a href="/password_reset" >Forgot password?</a></div><br>
+            <div class="anchor">&nbsp&nbsp<a href="/signup">Create account</a></div><br>
+            <div class="anchor">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/">Home</a></div>
+        </form>
+        </div>
+        <script src="../javascripts/timer.js"></script>
+    </body>
+</html>
+
+
+singup.ejs
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Login Page
+        </title>
+        <meta charset="utf-8">                
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/style2.css">
+    </div>
+    </head>
+    <body>
+      <!-- check form vaidation -->
+         <div class="container">
+            <% if (error && error.length > 0) {%>
+             <br>
+             <div class="alert alert-danger text-center" role="alert" id="close">
+                <%= error %>
+            </div>
+         <% } %>
+        <% if (success && success.length > 0) {%>
+            <br>
+        <div class="alert alert-success text-center" role="alert" id="close">
+         <%= success %>
+        </div>
+        <% } %>
+         </div>
+        <div class="place">
+            <h2>Culinary Artist</h2><br>
+        </div>
+        <div class="w3-container w3-white w3-panel w3-border w3-round-large size">
+        <form action="/signupuser" class="formset" method="POST">
+            <h2 id="log"><u>Login</u></h2>
+            <h4>Username:</h4>
+            <input  class="w3-border w3-round" type="text" name="username" placeholder="Tim" required>
+            <h4>Mobile Number:</h4>
+            <input type="text" class="w3-border w3-round" name="mobile" required="required" placeholder="12345678910" />
+            <h4>Email:</h4>
+            <input type="text" class="w3-border w3-round" name="email" id="identity"  required="required" placeholder="example@mail.com">
+            <h4 >Password:</h4>
+            <input  class="w3-border w3-round" type="password" name="password" placeholder="password" required>
+			<h4>Confirm Password:</h4>
+			<input type="password" class="w3-border w3-round" name="ConfirmPassword" id="password2" placeholder="Confirm Password" required>
+			<input type="submit"  class="w3-button w3-round w3-blue btn" value="Signup" />
+            <div class="anchor"><a href="/">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome</a></div>
+        </form>
+        </div>
+        <script src="../javascripts/timer.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+                   <div class="form-group">
+                      <label for="email">Username</label>
+                      <!-- <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com"> -->
+                      <!-- <input class="form-control"  type="email" name="email" placeholder="example@gmail.com" required> -->
+                      <input class="form-control"  type="text" name="username" placeholder="User Name" required>
+                    </div>
+    
+                    <div class="form-group mb-4">
+                        <label for="mobile">Mobile Number</label>
+                        <!-- <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword"> -->
+                        <!-- <input  class="form-control" type="password" name="password" placeholder="Password" required> -->
+                        <input   class="form-control" type="tel" name="mobile" placeholder="Mobile Number" required>
+  
+                      </div>
+                      <div class="form-group mb-4">
+                        <label for="mail">Email</label>
+                        <!-- <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword"> -->
+                        <!-- <input  class="form-control" type="password" name="password" placeholder="Password" required> -->
+                        <input   class="form-control" type="email" name="mail" placeholder="example@gmail.com" required>
+  
+                      </div>
+                      <div class="form-group mb-4">
+                        <label for="password">Password</label>
+                        <!-- <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword"> -->
+                        <!-- <input  class="form-control" type="password" name="password" placeholder="Password" required> -->
+                        <input   class="form-control" type="password" name="password" placeholder="Password" required>
+  
+                      </div>
+                      <div class="form-group mb-4">
+                        <label for="pass">Confirm Password</label>
+                        <!-- <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword"> -->
+                        <!-- <input  class="form-control" type="password" name="password" placeholder="Password" required> -->
+                        <input   class="form-control" type="password" name="pass" id="password2" placeholder="Confirm Password" required>
+  
+                      </div>
+
+                    <!-- <input name="login" id="login" class="btn btn-block login-btn" type="button" value="Login"> -->
+                    <!-- <button type="submit" class="btn btn-block login-btn">Sign Up</button> -->
+                    <input type="submit" class="btn btn-block login-btn" value="Signup" />
+                    <!-- <a href="/password_reset" class="forgot-password-link">Forgot password?</a> -->
+                    <!-- <p class="login-wrapper-footer-text">Don't have an account? <a href="/signup" class="text-reset">Register here</a></p> -->
+
+
+order.ejs
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>admin resource page</title>
+</head>
+<body>
+
+    <!-- <h1 class="text-center text-primary">Admin resource page</h1> -->
+
+  <button class="btn btn-outline-primary waves-effect float-right mt-3 mr-3 ">  <a href="/admin_homepage">Home</a></button>
+
+     <% if(order) { %>
+        <h3 class="text-center text-primary">Recent orders </h3>
+
+    <%  order.forEach(order => {%>
+          <br>  
+           <div class="container">
+           <div class="col-xl-6 float-left"> 
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-0">User Details</h2>
+                      </div>
+           <div class="table-responsive">
+           <table class="table align-items-center table-flush" id="userId">
+
+
+            </table>
+            </div></div></div></div>
+            </div>
+            <div class="col-xl-6 float-right" > 
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="mb-0">Chef Details</h2>
+                          </div>
+            <div class="table-responsive">
+            <table class="table align-items-center table-flush">    
+               
+                    <!-- <ul>
+                        <li>Chef username: <h3><%= order.chef[0].username %></h3></li>
+                        <li>Email: <h3><%= order.chef[0].email %></h3></li>
+                        <li>Mobile: <h3><%= order.chef[0].mobile %></h3></li>
+                    </ul>  -->
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><%= order.chef[0].username %></td>
+                        <td><%= order.chef[0].email %></td>
+                        <td><%= order.chef[0].mobile %></td>
+                    </tr>
+                    </tbody>
+            </table>
+            </div></div></div></div>
+            </div>
+            </div>
+    <%})%>
+
+    <% } %>
+
+    <script src="javascripts/timer.js"></script>
+    <script  src="javascripts/dynamic_table.js"></script>
+  
+</body>
+</html>

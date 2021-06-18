@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>admin resource page</title>
+</head>
+<body>
+
+    <!-- <h1 class="text-center text-primary">Admin resource page</h1> -->
+
+  <button class="btn btn-outline-primary waves-effect float-right mt-3 mr-3 ">  <a href="/admin_homepage">Home</a></button>
+
+     <% if(order) { %>
+        <h3 class="text-center text-primary">Recent orders </h3>
+
+    <%  order.forEach(order => {%>
+          <br>  
+           <div class="container">
+           <div class="col-xl-6 float-left"> 
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-0">User Details</h2>
+                      </div>
+           <div class="table-responsive">
+           <table class="table align-items-center table-flush" id="userId">
+
+               <!-- <caption>User Details</caption>        -->
+
+            
+                        <!-- <ul>
+                            <li>User username: <h3><%= order.user.username %></h3></li>
+                            <li>Email: <h3><%= order.user[0].email %></h3></li>
+                            <li>Mobile: <h3><%= order.user[0].mobile %></h3></li>
+                        </ul> -->
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+            
+                            <td><%= order.user[0].username %></td>
+                            <td><%= order.user[0].email %></td>
+                            <td><%= order.user[0].mobile %></td>
+
+
+                        </tr>
+                        </tbody>
+            </table>
+            </div></div></div></div>
+            </div>
+            <div class="col-xl-6 float-right" > 
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="mb-0">Chef Details</h2>
+                          </div>
+            <div class="table-responsive">
+            <table class="table align-items-center table-flush">    
+               
+                    <!-- <ul>
+                        <li>Chef username: <h3><%= order.chef[0].username %></h3></li>
+                        <li>Email: <h3><%= order.chef[0].email %></h3></li>
+                        <li>Mobile: <h3><%= order.chef[0].mobile %></h3></li>
+                    </ul>  -->
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><%= order.chef[0].username %></td>
+                        <td><%= order.chef[0].email %></td>
+                        <td><%= order.chef[0].mobile %></td>
+                    </tr>
+                    </tbody>
+            </table>
+            </div></div></div></div>
+            </div>
+            </div>
+    <%})%>
+
+    <% } %>
+
+    <script src="javascripts/timer.js"></script>
+    <script>
+        // $(document).ready(function() {
+        //     sampleUser();
+        // });
+     if(window.jQuery) {
+        
+        
+        
+        function sampleUser() {
+            alert("hello");
+            var table = document.getElementById("userId");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var a =  order.user[0].username; alert(a);
+            var b = order.user[0].email;
+            var c = order.user[0].mobile;
+
+            cell1.innerHTML = a;
+            cell2.innerHTML = b;
+            cell3.innerHTML = c;
+            
+            
+        }
+    }
+    </script>
+</body>
+</html>

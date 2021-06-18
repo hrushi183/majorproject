@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            update info page
+        </title>
+        <meta charset="utf-8">                
+        <link rel="stylesheet" href="/stylesheets/style2.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+       
+
+        
+        <div class="w3-container w3-white w3-panel w3-border w3-round-large size">
+        <form action="/update_chef" class="formset" method="POST">
+            <h2 id="log" style="margin-left: 120px;"><u>Update</u></h2>
+            <br>
+            <h5>Username:</h5>
+            <input  class="w3-border w3-round" type="text" name="username" required value=<%= list.username %>  />
+            <br>
+            <br>
+            <h5>Mobile Number:</h5>
+            <input type="text" class="w3-border w3-round" name="mobile" required="required" value=<%= list.mobile %> />
+            <br>
+            <br>
+            <h5>Email:</h5>  
+            <input type="email" class="w3-border w3-round" name="email" id="identity"  required="required" value=<%= list.email %> />
+			<input type="submit"  class="w3-button w3-round w3-blue btn" value="Update" />
+            <br>
+            <br>
+            <!-- <div class="anchor"><a href="/chef_homepage">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsphomepage</a></div> -->
+            <div style="margin-left: 160px;"><a href="/chef_homepage">Home</a></div>
+        </form>
+        </div>
+        <script src="/javascripts/timer.js"></script>
+    </body>
+</html>
